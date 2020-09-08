@@ -1,0 +1,188 @@
+<div class="header header-dark bg-primary pb-6 content__title content__title--calendar">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+
+        <div class="col-lg-6">
+          <h6 class="fullcalendar-title h2 text-white d-inline-block mb-0">July 2021</h6>
+          <nav aria-label="breadcrumb" class="d-none d-lg-inline-block ml-lg-4">
+            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+              <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+              <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Calendar</li>
+
+
+
+            </ol>
+          </nav>
+
+        </div>
+
+        <div class="col-lg-6 mt-3 mt-lg-0 text-lg-right">
+          <a href="#" class="fullcalendar-btn-prev btn btn-sm btn-neutral">
+            <i class="fas fa-angle-left"></i>
+          </a>
+          <a href="#" class="fullcalendar-btn-next btn btn-sm btn-neutral">
+            <i class="fas fa-angle-right"></i>
+          </a>
+          <a href="#" class="btn btn-sm btn-neutral" data-calendar-view="month">Month</a>
+          <a href="#" class="btn btn-sm btn-neutral" data-calendar-view="basicWeek">Week</a>
+          <a href="#" class="btn btn-sm btn-neutral" data-calendar-view="basicDay">Day</a>
+        </div>
+        <button (click)="modalCalendar(ModelCalendar)" class="btn btn-success">Add event</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--6">
+  <div class="row">
+    <div class="col">
+      <!-- Fullcalendar -->
+      <div class="card card-calendar">
+        <!-- Card header -->
+
+        <full-calendar defaultView="dayGridMonth" [events]="events" [plugins]="calendarPlugins"></full-calendar>
+
+        <!-- Modal - Add new event -->
+        <!--* Modal header *-->
+        <!--* Modal body *-->
+        <!--* Modal footer *-->
+        <!--* Modal init *-->
+
+        <!-- Modal - Edit event -->
+        <!--* Modal body *-->
+        <!--* Modal footer *-->
+        <!--* Modal init *-->
+
+      </div>
+    </div>
+    <!-- Footer -->
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <ng-template #ModelCalendar let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form role="form" [formGroup]="addform" (submit)="onSubmit()" >
+        <div class="form-group">
+          <label for="example-text-input" class="form-control-label">Title</label>
+          <input class="form-control" type="text" formControlName="Title" id="example-text-input"
+            placeholder="entrez votre Title ici" [ngClass]="{ 'is-invalid': submitted && Cform.Title.errors }">
+  
+            <div *ngIf="submitted && Cform.Title.errors" class="invalid-feedback">
+              <div *ngIf="Cform.Title.errors.required" >
+                Title is required
+      
+              </div>
+      
+            </div>
+           
+  
+  
+        </div>
+          <div class="form-group">
+        <label for="example-text-input" class="form-control-label">nom_Groupe</label>
+       
+       
+         <select class="form-control form-control-sm" formControlName="nom_Groupe"  [ngClass]="{ 'is-invalid': submitted && Cform.nom_Groupe.errors }"
+         >
+             <option [ngValue]="null">Choose a Groupe</option>
+
+          <option *ngFor="let e of group">{{ e.Nom}}</option>
+        </select>
+       
+       
+       
+       
+       
+         <div *ngIf="submitted && Cform.nom_Groupe.errors" class="invalid-feedback">
+          <div *ngIf="Cform.nom_Groupe.errors.required" >
+            nom_Groupe is required
+
+          </div>
+
+        </div>
+
+
+
+
+      </div>
+  
+  
+  
+        <div class="form-group">
+          <label for="example-text-input" class="form-control-label">Color </label>
+          <input class="form-control" type="color" formControlName="Color" [ngClass]="{ 'is-invalid': submitted && Cform.Group.errors }">
+  
+  
+  
+          <div *ngIf="submitted && Cform.Color.errors" class="invalid-feedback">
+            <div *ngIf="Cform.Color.errors.required" >
+              Color is required
+    
+            </div>
+    
+          </div>
+  
+  
+  
+        </div>
+  
+        <div class="form-group">
+          <label for="example-text-input" class="form-control-label">start_date </label>
+          <input class="form-control" type="date" formControlName="start_date" [ngClass]="{ 'is-invalid': submitted && Cform.start_date.errors }">
+  
+          
+          <div *ngIf="submitted && Cform.start_date.errors" class="invalid-feedback">
+            <div *ngIf="Cform.start_date.errors.required" >
+              start_date is required
+    
+            </div>
+    
+          </div>
+  
+        </div>
+  
+        <div class="form-group">
+          <label for="example-text-input" class="form-control-label">end_date</label>
+          <input class="form-control" type="date" formControlName="end_date" [ngClass]="{ 'is-invalid': submitted && Cform.end_date.errors }">
+  
+  
+  
+          <div *ngIf="submitted && Cform.end_date.errors" class="invalid-feedback">
+            <div *ngIf="Cform.end_date.errors.required" >
+              end_date is required
+    
+            </div>
+    
+          </div>
+  
+        </div>
+  
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger"  >Ajouter</button>
+
+        </div>
+      </form>
+  
+    </div>
+   
+  </ng-template>
+ 

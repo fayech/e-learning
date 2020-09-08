@@ -1,0 +1,264 @@
+<div class="header bg-primary pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2 text-white d-inline-block mb-0">student space</h6>
+          <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+              <li class="breadcrumb-item">
+                <a href="#"><i class="fas fa-home"></i></a>
+              </li>
+              <li class="breadcrumb-item"><a href="#">Student</a></li>
+            </ol>
+          </nav>
+        </div>
+        <div class="col-lg-6 col-5 text-right">
+          <a href="#" class="btn btn-sm btn-neutral">New</a>
+          <a href="#" class="btn btn-sm btn-neutral">Filters</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--6">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <!-- Card header -->
+        <div class="card-header border-0">
+          <h3 class="mb-0">Students list</h3>
+          <div class="nav-wrapper">
+            <ul class="nav nav-pills " id="tabs-icons-text" role="tablist">
+              <li class="nav-item" (click)="modalEtudiant(Model,'')">
+                <a class="nav-link mb-sm-3 mb-md-0" style="color:tomato" >
+                  <i class="ni ni-fat-add"></i>Add Students</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Light table -->
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col" class="sort" data-sort="budget">Image</th>
+                <th scope="col" class="sort" data-sort="name">Last name</th>
+                <th scope="col" class="sort" data-sort="budget">First name</th>
+                <th scope="col" class="sort" data-sort="budget">Email</th>
+                <th scope="col" class="sort" data-sort="budget">PassWoed</th>
+                <th scope="col" class="sort" data-sort="budget">levels</th>
+
+                <th scope="col" class="sort" data-sort="budget">Connexion</th>
+                <th scope="col">Action</th>
+
+              </tr>
+            </thead>
+            <tbody class="list">
+              <tr *ngFor="let item of items; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td><img class="card-img-top" src="http://localhost:3000/{{item.Image}}" style="width:30px; height:30px;border-radius: 50% !important;"></td>
+
+                <td>{{ item.Nom }}</td>
+                <td>{{ item.Prenom }}</td>
+                <td>{{ item.Email }}</td>
+                <td>{{ item.Motpasse }}</td>
+                 <td>{{ item.Niveau }}</td>
+                <td>{{ item.Connexion }}</td>
+                <td>
+                  <a (click)="modalEtudiant(Model,item._id)">
+                    <i class="ni ni-air-baloon" style="color:yellow;"></i
+                  ></a>
+                  <a class="Danger" (click)="deleteEtudiant(deleteModel,item._id)">
+                    <i class="ni ni-scissors" style="color:red;"></i>
+                  </a>
+   <a class="Danger" (click)="viewEtudiant(viewModel,item._id)">
+                  <i class="ni ni-single-02"></i>
+                  </a>
+                  
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Card footer -->
+        <div class="card-footer py-4">
+          <nav aria-label="...">
+            <ul class="pagination justify-content-end mb-0">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">
+                  <i class="fas fa-angle-left"></i>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="#">1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">
+                  <i class="fas fa-angle-right"></i>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- deleteModel -->
+<ng-template #deleteModel let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+    <button type="button"  class="close" aria-label="Close"  (click)="modal.dismiss('Cross click')" >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+ 
+  <div class="modal-body">
+    <p>
+    are you sure you want to delete this student?
+
+       
+    </p>
+    <p>
+      All information associated to this user profile will be permanently
+      deleted.
+      <span class="text-danger">This operation can not be undone.</span>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('ok click')">Delect</button>
+  </div>
+</ng-template>
+
+<!--end-of deleteModel -->
+
+<ng-template #Model let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Student profile</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+<app-enseignant-model-e [itemsId]="itemId" (etudiant)="getUpdateEtudiant($event)"></app-enseignant-model-e>
+</ng-template>
+<!--AddModel -->
+
+<!--end-of AddModel -->
+
+<!--end- EditModel
+<ng-template #Edit let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Etudiant  Update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="addform" (submit)="onEdit(etudiantDetails._id)">
+      <div class="form-group">
+        <label for="example-text-input" class="form-control-label">Nom</label>
+        <input class="form-control" type="text"  formControlName="Nom"  [(ngModel)]="etudiantDetails.Nom" id="example-Nom-input" [ngClass]="{ 'is-invalid': submitted  && Cform.Nom.errors }">
+
+
+
+
+      </div>
+      <div class="form-group">
+        <label for="example-text-input" class="form-control-label">Prenom</label>
+        <input class="form-control" type="text"  formControlName="Prenom" [(ngModel)]="etudiantDetails.Prenom" [ngClass]="{ 'is-invalid': submitted && Cform.Prenom.errors }"  id="example-Prenom-input">
+
+
+
+
+      </div>
+      <div class="form-group">
+        <label for="example-email-input" class="form-control-label">Email</label>
+        <input class="form-control" type="email"  formControlName="Email" [(ngModel)]="etudiantDetails.Email" [ngClass]="{ 'is-invalid': submitted && Cform.Email.errors }"  id="example-email-input">
+
+
+
+
+
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="example-text-input" class="form-control-label">Image</label>
+        <input class="form-control" type="file"
+          formControlName="Image" [(ngModel)]="etudiantDetails.Image"
+           id="example-Image-input"
+            [ngClass]="{ 'is-invalid': submitted && Cform.Image.errors }">
+
+
+
+    </div>
+    <div class="form-group">
+      <label for="example-text-input" class="form-control-label">Connexion</label>
+      <select class="form-control form-control-sm"  formControlName="Connexion">
+
+
+        <ng-container *ngIf="etudiantDetails.Connexion==true; else elseTemplate">
+          <option   [selected]="true">{{etudiantDetails.Connexion}}</option>
+          <option>false</option>
+
+        </ng-container>
+        <ng-template #elseTemplate>
+          <option   [selected]="true">{{etudiantDetails.Connexion}}</option>
+          <option>true</option>
+        </ng-template>
+
+
+
+      </select>
+
+
+  </div>
+    <div class="form-group">
+      <label for="example-password-input" class="form-control-label">Password</label>
+      <input class="form-control form-control-Success" type="password" [(ngModel)]="etudiantDetails.Motpasse"  formControlName="Motpasse" id="example-password-input" [ngClass]="{ 'is-invalid': submitted && Cform.Motpasse.errors }">
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Annuler</button>
+
+    <button type="submit" class="btn btn-danger">Update</button>
+   </div>
+
+</form>
+
+  </div>
+
+</ng-template>
+ -->
+ <ng-template #viewModel let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Student profile</h4>
+</div>
+
+
+<div class="modal-body">
+<img  class="profile__image" src="http://localhost:3000/{{etudiantDetails.Image}}">
+<div class="profile__name"> Last name:{{etudiantDetails.Nom}} </div>
+<div class="profile__title">First name:{{etudiantDetails.Prenom}} </div>
+<div class="profile__title">level: {{etudiantDetails.Niveau}} </div>
+</div>
+
+    
+<div class="modal-footer">
+
+    <button type="button" class="btn btn-danger" (click)="modal.close('ok click')">Cancel</button>
+</div>
+
+</ng-template>
+ 

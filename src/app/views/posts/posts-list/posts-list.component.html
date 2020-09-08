@@ -1,0 +1,290 @@
+<div class="header bg-primary pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2 text-white d-inline-block mb-0">Tables</h6>
+          <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+              <li class="breadcrumb-item">
+                <a href="#"><i class="fas fa-home"></i></a>
+              </li>
+              <li class="breadcrumb-item"><a href="#">Tables</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Tables</li>
+            </ol>
+          </nav>
+        </div>
+        <div class="col-lg-6 col-5 text-right">
+          <a href="#" class="btn btn-sm btn-neutral">New</a>
+          <a href="#" class="btn btn-sm btn-neutral">Filters</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--6">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <!-- Card header -->
+        <div class="card-header border-0">
+          <h3 class="mb-0">Light table</h3>
+          <div class="nav-wrapper">
+            
+          </div>
+        </div>
+        <!-- Light table -->
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">#</th>
+
+                <th scope="col" class="sort" data-sort="name">name</th>
+                <th scope="col" class="sort" data-sort="budget">Email</th>
+                <th scope="col" class="sort" data-sort="status">Number</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody class="list">
+              <tr *ngFor="let item of items; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ item.Nom }}</td>
+                <td>{{ item.Email }}</td>
+                <td>{{ item.Numero }}</td>
+                <td>
+                  <a (click)="EditAdmin(Edit,item._id)">
+                    <i class="ni ni-air-baloon" style="color:yellow;"></i
+                  ></a>
+                  <a class="Danger" (click)="deleteadmin(deleteModel,item._id)">
+                    <i class="ni ni-scissors" style="color:red;"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Card footer -->
+        <div class="card-footer py-4">
+          <nav aria-label="...">
+            <ul class="pagination justify-content-end mb-0">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">
+                  <i class="fas fa-angle-left"></i>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="#">1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#"
+                  >2 <span class="sr-only">(current)</span></a
+                >
+              </li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">
+                  <i class="fas fa-angle-right"></i>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- deleteModel -->
+<ng-template #deleteModel let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+    <button type="button"  class="close" aria-label="Close"  (click)="modal.dismiss('Cross click')" >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>
+      <strong>
+        Pour qui voulez-vous supprimer  ?
+        <span class="text-primary">"John Doe"</span> profile?</strong>
+    </p>
+    <p>
+      All information associated to this user profile will be permanently
+      deleted.
+      <span class="text-danger">This operation can not be undone.</span>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Annuler</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('ok click')">Supprimer</button>
+  </div>
+</ng-template>
+
+<!--end-of deleteModel -->
+
+<!--AddModel -->
+
+
+<ng-template #Ajoute let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile  Ajouter</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="addform" (submit)="onSubmit()">
+      <div class="form-group">
+        <label for="example-Nom-input" class="form-control-label">Nom</label>
+        <input class="form-control" type="text" placeholder="entrez votre nom ici"   formControlName="Nom"  id="example-Nom-input" [ngClass]="{ 'is-invalid': submitted  && Cform.Nom.errors }">
+    <div *ngIf="submitted  && Cform.Nom.errors" class="invalid-feedback">
+      <div *ngIf="Cform.Nom.errors.required" >
+      Nom is required
+
+      </div>
+
+    </div>
+
+
+      </div>
+      <div class="form-group">
+        <label for="example-email-input" class="form-control-label">Email</label>
+        <input class="form-control" type="email" placeholder="entrez votre Email ici"  formControlName="Email" [ngClass]="{ 'is-invalid': submitted && Cform.Email.errors }"  id="example-email-input">
+        <div *ngIf="submitted && Cform.Email.errors" class="invalid-feedback">
+          <div *ngIf="Cform.Email.errors.required" >
+          Email is required
+
+          </div>
+
+        </div>
+
+
+
+
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="example-Numero-input" class="form-control-label">Numero</label>
+        <input class="form-control" type="number" placeholder="entrez votre Numero ici"   formControlName="Numero"  id="example-Numero-input"  [ngClass]="{ 'is-invalid': submitted && Cform.Numero.errors }">
+
+        <div *ngIf="submitted && Cform.Numero.errors" class="invalid-feedback">
+          <div *ngIf="Cform.Numero.errors.required" >
+            Numero is required
+
+          </div>
+
+        </div>
+
+    </div>
+    <div class="form-group">
+      <label for="example-password-input" class="form-control-label">Password</label>
+      <input class="form-control form-control-Success"  placeholder="entrez votre Password ici"  type="password"  formControlName="Motpasse" id="example-password-input" [ngClass]="{ 'is-invalid': submitted && Cform.Motpasse.errors }">
+      <div *ngIf="submitted && Cform.Motpasse.errors" class="invalid-feedback">
+        <div *ngIf="Cform.Motpasse.errors.required" >
+          Password is required
+
+        </div>
+
+      </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Annuler</button>
+
+    <button type="submit" class="btn btn-danger"  >Ajouter</button>
+   </div>
+
+</form>
+
+  </div>
+
+</ng-template>
+<!--end-of AddModel -->
+<!-- EditModel -->
+
+<ng-template #Edit let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="addform" (submit)="onEdit(adminDetails._id)">
+      <div class="form-group">
+        <label for="example-Nom-input" class="form-control-label">Nom</label>
+        <input class="form-control" type="text"  formControlName="Nom"  id="example-Nom-input" [(ngModel)]="adminDetails.Nom" [ngClass]="{ 'is-invalid': submitted  && Cform.Nom.errors }">
+    <div *ngIf="submitted  && Cform.Nom.errors" class="invalid-feedback">
+      <div *ngIf="Cform.Nom.errors.required" >
+      Nom is required
+
+      </div>
+
+    </div>
+
+
+      </div>
+      <div class="form-group">
+        <label for="example-email-input" class="form-control-label">Email</label>
+        <input class="form-control" type="email"  formControlName="Email" [(ngModel)]="adminDetails.Email"  [ngClass]="{ 'is-invalid': submitted && Cform.Email.errors }"  id="example-email-input">
+        <div *ngIf="submitted && Cform.Email.errors" class="invalid-feedback">
+          <div *ngIf="Cform.Email.errors.required" >
+          Email is required
+
+          </div>
+
+        </div>
+
+
+
+
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="example-Numero-input" class="form-control-label">Numero</label>
+        <input class="form-control" type="text"  formControlName="Numero"  id="example-Numero-input" [(ngModel)]="adminDetails.Numero"  [ngClass]="{ 'is-invalid': submitted && Cform.Numero.errors }">
+
+        <div *ngIf="submitted && Cform.Numero.errors" class="invalid-feedback">
+          <div *ngIf="Cform.Numero.errors.required" >
+            Numero is required
+
+          </div>
+
+        </div>
+
+    </div>
+    <div class="form-group">
+      <label for="example-password-input" class="form-control-label">Password</label>
+      <input class="form-control form-control-Success" type="password"  [(ngModel)]="adminDetails.Motpasse"   formControlName="Motpasse" id="example-password-input" [ngClass]="{ 'is-invalid': submitted && Cform.Motpasse.errors }">
+      <div *ngIf="submitted && Cform.Motpasse.errors" class="invalid-feedback">
+        <div *ngIf="Cform.Motpasse.errors.required" >
+          Password is required
+
+        </div>
+
+      </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Annuler</button>
+
+    <button type="submit" class="btn btn-danger"  >Update</button>
+   </div>
+
+</form>
+
+  </div>
+
+</ng-template>
+<!--end-of EditModel -->
+
+
+
+
+
+
+

@@ -1,0 +1,131 @@
+<div class="header bg-primary pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2 text-white d-inline-block mb-0">Class</h6>
+          <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+              <li class="breadcrumb-item">
+                <a href="#"><i class="fas fa-home"></i></a>
+              </li>
+              <li class="breadcrumb-item"><a href="#">Teacher</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Class</li>
+            </ol>
+          </nav>
+        </div>
+        <div class="col-lg-6 col-5 text-right">
+          <a href="#" class="btn btn-sm btn-neutral">New</a>
+          <a href="#" class="btn btn-sm btn-neutral">Filters</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--6">
+  <div class="row">
+    <div class="col-xl-8" cdkDrag>
+      <div class="card">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0">Page Class</h3>
+            </div>
+            <div class="col text-right">
+              <a  class="btn btn-sm btn-primary" (click)="modalClasse(ModelClasse,'')">Add  Class</a>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <!-- Projects table -->
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">name Class</th>
+
+ 
+                <th scope="col">Level</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let classe of Classe; let i = index">
+                <th scope="row">
+                  {{ classe.Nom }}
+                </th>
+                <td>
+                  {{ classe.Niveau }}
+                </td>
+               
+                <td>
+                  <a  class="Danger" (click)="modalClasse(ModelClasse,classe._id)">
+                    <i class="ni ni-air-baloon" style="color:yellow;"></i></a>
+                  <a class="Danger" (click)="DeleteClasse(deleteClasse,classe._id)">
+                    <i class="ni ni-scissors" style="color:red;"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  
+
+</div>
+
+
+
+<!-- deleteGroup -->
+<ng-template #deleteClasse let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+    <button type="button"  class="close" aria-label="Close"  (click)="modal.dismiss('Cross click')" >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>
+       are you sure you want to delete this Class?
+    </p>
+    <p>
+      All information associated to this user profile will be permanently
+      deleted.
+      <span class="text-danger">This operation can not be undone.</span>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Annuler</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('ok click')">Supprimer</button>
+  </div>
+</ng-template>
+
+<!--end-of deleteGroup -->
+
+
+
+
+
+
+
+
+
+<!--end AddGroup U  UpdateGroup -->
+<ng-template #ModelClasse let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add  Class</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+ <app-enseignant-model-c  [ClassId]="ClasseId" (cl)="getUpdateClasse($event)" ></app-enseignant-model-c>
+
+</ng-template>
+<!--AddModel UpdateGroup -->
+<!--end-of AddGroup -->
+
+
+
+<!--end-of AddGroup -->

@@ -1,0 +1,121 @@
+ <div class="modal-body">
+  <form [formGroup]="addForm" (submit)="onSubmit(itemsId)">
+    <div class="form-group">
+      <label for="example-text-input" class="form-control-label">Nom</label>
+      <input class="form-control" type="text"  formControlName="Nom"  [(ngModel)]="etudiantDetails.Nom" id="example-Nom-input"  [ngClass]="{ 'is-invalid': submitted && Cform.Nom.errors }"> 
+      <div *ngIf="submitted && Cform.Nom.errors" class="invalid-feedback">
+        <div *ngIf="Cform.Nom.errors.required" >
+          Nom is required
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+    <div class="form-group">
+      <label for="example-text-input" class="form-control-label">Prenom</label>
+      <input class="form-control" type="text"  formControlName="Prenom" [(ngModel)]="etudiantDetails.Prenom"   id="example-Prenom-input" [ngClass]="{ 'is-invalid': submitted && Cform.Prenom.errors }"> 
+      <div *ngIf="submitted && Cform.Prenom.errors" class="invalid-feedback">
+        <div *ngIf="Cform.Prenom.errors.required" >
+          Prenom is required
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+    <div class="form-group">
+      <label for="example-email-input" class="form-control-label">Email</label>
+      <input class="form-control" type="email"  formControlName="Email" [(ngModel)]="etudiantDetails.Email"   id="example-email-input" [ngClass]="{ 'is-invalid': submitted && Cform.Email.errors }"> 
+      <div *ngIf="submitted && Cform.Email.errors" class="invalid-feedback">
+        <div *ngIf="Cform.Email.errors.required" >
+          Email is required
+
+        </div>
+
+      </div>
+
+
+
+
+    </div>
+
+
+
+    <div class="form-group">
+      <label for="example-text-input" class="form-control-label">Image</label>
+      <input class="form-control" type="file"
+        formControlName="Image" [(ngModel)]="etudiantDetails.Image"
+         id="example-Image-input"
+         (change)="uploadFile($event)" [ngClass]="{ 'is-invalid': submitted && Cform.Image.errors }"> 
+
+         <div *ngIf="submitted && Cform.Image.errors" class="invalid-feedback">
+          <div *ngIf="Cform.Image.errors.required" >
+            Image is required
+  
+          </div>
+  
+        </div>
+  
+  
+
+  </div>
+  <div class="form-group">
+    <label for="example-text-input" class="form-control-label">Connexion</label>
+    <select class="form-control form-control-sm"  formControlName="Connexion">
+
+
+      <ng-container >
+        <option>true</option>
+        <option>false</option>
+
+      </ng-container>
+      
+
+
+
+    </select>
+
+
+</div>
+  <div class="form-group">
+    <label for="example-password-input" class="form-control-label">Password</label>
+    <input class="form-control form-control-Success" type="password" [(ngModel)]="etudiantDetails.Motpasse"  formControlName="Motpasse" id="example-password-input" [ngClass]="{ 'is-invalid': submitted && Cform.Motpasse.errors }"> 
+    <div *ngIf="submitted && Cform.Motpasse.errors" class="invalid-feedback">
+      <div *ngIf="Cform.Motpasse.errors.required" >
+        Password is required
+
+      </div>
+
+    </div>
+</div>
+
+
+
+
+ <div class="form-group">
+        <label for="example-text-input" class="form-control-label">Niveau</label>
+      
+
+         <select class="form-control form-control-sm" formControlName="Niveau"  [ngClass]="{ 'is-invalid': submitted && Cform.Niveau.errors }"
+         [(ngModel)]="etudiantDetails.Niveau">
+          <option *ngFor="let n of niveau">{{n.Niveau}}</option>
+        </select>
+      
+      
+
+
+
+      </div>
+
+
+<div class="modal-footer">
+
+  <button type="submit" class="btn btn-danger"  >{{ itemsId===''? 'Ajouter':'Update' }}</button>
+ </div>
+</form>
+  </div>

@@ -1,0 +1,71 @@
+<div class="modal-body">
+    <form [formGroup]="addForm" (submit)="onSubmit(GroupsId)">
+      <div class="form-group">
+        <label for="example-text-input" class="form-control-label">name </label>
+        <input class="form-control" type="text" [(ngModel)]="GroupDetails.Nom" formControlName="Nom"  id="example-text-input"
+        [ngClass]="{ 'is-invalid': submitted  && Cform.Nom.errors }"
+        placeholder="Enter name"  >
+    <div *ngIf="submitted  && Cform.Nom.errors" class="invalid-feedback">
+      <div *ngIf="Cform.Nom.errors.required" >
+      name is required
+
+      </div>
+
+    </div>
+
+
+      </div>
+      <div class="form-group">
+        <label for="example-text-input" class="form-control-label">teacher name </label>
+      
+
+         <select class="form-control form-control-sm" formControlName="nom_E"  [ngClass]="{ 'is-invalid': submitted && Cform.nom_E.errors }"
+         [(ngModel)]="GroupDetails.nom_E">
+          <option>{{nomE}}</option>
+        </select>
+      
+        <div *ngIf="submitted && Cform.nom_E.errors" class="invalid-feedback">
+          <div *ngIf="Cform.nom_E.errors.required" >
+            teacher is required
+
+          </div>
+
+        </div>
+
+
+
+
+      </div>
+
+
+
+<div class="form-group">
+        <label for="example-text-input" class="form-control-label">Level </label>
+      
+
+         <select class="form-control form-control-sm" formControlName="niveau"  [ngClass]="{ 'is-invalid': submitted && Cform.niveau.errors }"
+         [(ngModel)]="GroupDetails.niveau">
+          <option *ngFor="let e of niveau">{{e.Niveau}}</option>
+        </select>
+      
+        <div *ngIf="submitted && Cform.niveau.errors" class="invalid-feedback">
+          <div *ngIf="Cform.niveau.errors.required" >
+            level  is required
+
+          </div>
+
+        </div>
+
+
+
+
+      </div>
+
+  <div class="modal-footer">
+
+    <button type="submit" class="btn btn-danger"  >{{ GroupsId===''? 'Add':'Update' }}</button>
+</div>
+
+</form>
+
+  </div>

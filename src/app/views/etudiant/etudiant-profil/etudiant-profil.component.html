@@ -1,0 +1,207 @@
+<div class="header pb-6 d-flex align-items-center" style="min-height: 500px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-default opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <h1 class="display-2 text-white">Hello {{users.Nom}}</h1>
+        <p class="text-white mt-0 mb-5">This is your profile page.</p>
+        <a href="#!" class="btn btn-neutral">Edit profile</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--6">
+  <div class="row">
+    <div class="col-md-4 col-sm-6">
+      <div class="card-container">
+          <div class="card">
+              <div class="front">
+                  <div class="cover">
+                    <img src="../assets/img/theme/img-1-1000x600.jpg" alt="Image placeholder" class="card-img-top">
+                  </div>
+                  <div class="user">
+                    <img  src="http://localhost:3000/{{users.Image}}" class="rounded-circle">    
+         
+                       </div>
+                  <div class="content">
+                      <div class="main">
+                          <h3 class="name">{{users.Nom}}</h3>
+                          <p class="profession">{{users.Prenom}}</p>
+                          <p class="profession">{{users.Email}}</p>
+
+                      </div>
+                      <div class="footer">
+                          <div class="rating">
+
+                              <i class="fa fa-mail-forward"></i> Auto Rotation
+                          </div>
+                      </div>
+                  </div>
+              </div> <!-- end front panel -->
+              <div class="back">
+                  <div class="header">
+                      <h5 class="motto">"To be or not to be, this is my awesome motto!"</h5>
+                  </div>
+                  <div class="content">
+                      <div class="main">
+                          <h4 class="text-center">{{users.Nom}}</h4>
+                          <p class="text-center">{{users.Email}}</p>
+
+                          <div class="stats-container">
+                              <div class="stats">
+                                  <h4>235</h4>
+                                  <p>
+                                      Followers
+                                  </p>
+                              </div>
+                              <div class="stats">
+                                  <h4>114</h4>
+                                  <p>
+                                      Following
+                                  </p>
+                              </div>
+                              <div class="stats">
+                                  <h4>35</h4>
+                                  <p>
+                                      Projects
+                                  </p>
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+                  <div class="footer">
+                      <div class="social-links text-center">
+                          <a href="https://creative-tim.com" class="facebook"><i class="fa fa-facebook fa-fw"></i></a>
+                          <a href="https://creative-tim.com" class="google"><i class="fa fa-google-plus fa-fw"></i></a>
+                          <a href="https://creative-tim.com" class="twitter"><i class="fa fa-twitter fa-fw"></i></a>
+                      </div>
+                  </div>
+              </div> <!-- end back panel -->
+          </div> <!-- end card -->
+      </div> <!-- end card-container -->
+
+
+        <div   class="theme-dark-blue ">
+          <bs-datepicker-inline [bsValue]="bsInlineValue"></bs-datepicker-inline>
+        </div>
+
+
+
+  </div>
+
+    <div class="col-xl-8 order-xl-1">
+      <div class="card">
+        <div class="card-header">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Edit profile </h3>
+            </div>
+            <div class="col-4 text-right">
+              <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="addForm" (submit)="onSubmit(users._id)">
+            <div class="form-group">
+              <label for="example-text-input" class="form-control-label">First name</label>
+              <input class="form-control" type="text"  formControlName="Nom"  [(ngModel)]="users.Nom" id="example-Nom-input"  > 
+              
+        
+        
+        
+            </div>
+            <div class="form-group">
+              <label for="example-text-input" class="form-control-label">Last name</label>
+              <input class="form-control" type="text"  formControlName="Prenom" [(ngModel)]="users.Prenom"   id="example-Prenom-input" > 
+             
+        
+        
+        
+            </div>
+            <div class="form-group">
+              <label for="example-email-input" class="form-control-label">Email</label>
+              <input class="form-control" type="email"  formControlName="Email" [(ngModel)]="users.Email"   id="example-email-input" > 
+              
+        
+        
+        
+            </div>
+        
+        
+        
+            <div class="form-group">
+              <label for="example-text-input" class="form-control-label">Image</label>
+              <input class="form-control" type="file"
+                formControlName="Image" 
+                 id="example-Image-input" (change)="uploadFile($event)" > 
+        
+               
+          
+          
+        
+          </div>
+          <div class="form-group">
+            <label for="example-text-input" class="form-control-label">Connexion</label>
+            <select class="form-control form-control-sm"  formControlName="Connexion">
+        
+        
+              <ng-container>
+                  <option disabled selected>Select Connexion Suits</option>
+
+                <option >true</option>
+                <option>false</option>
+        
+              </ng-container>
+              
+        
+        
+        
+            </select>
+            <div class="form-group">
+        <label for="example-text-input" class="form-control-label">Level</label>
+    
+      
+    <input class="form-control" type="text" disabled  formControlName="Niveau" [(ngModel)]="users.Niveau"  [ngClass]="{ 'is-invalid': submitted && Cform.Niveau.errors }"  id="example-email-input" [(ngModel)]="users.Niveau"> 
+
+
+
+      </div>
+        
+        
+        </div>
+          <div class="form-group">
+            <label for="example-password-input" class="form-control-label">Password</label>
+            <input class="form-control form-control-Success" type="password" [(ngModel)]="users.Motpasse"  formControlName="Motpasse" id="example-password-input" > 
+          
+        </div>
+        
+        
+        
+        <div class="modal-footer">
+        
+          <button type="submit" class="btn btn-danger"  >Update</button>
+         </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

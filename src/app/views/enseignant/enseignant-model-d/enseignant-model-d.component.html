@@ -1,0 +1,75 @@
+<div class="modal-body">
+    <form [formGroup]="addForm" (submit)="onSubmit(DocsId)">
+      <div class="form-group">
+        <label for="example-text-input" class="form-control-label">document Name </label>
+        <input class="form-control" type="text" [(ngModel)]="DocDetails.Nom" formControlName="Nom"  id="example-text-input"
+        [ngClass]="{ 'is-invalid': submitted  && Cform.Nom.errors }"
+        placeholder="Enter name"  >
+    <div *ngIf="submitted  && Cform.Nom.errors" class="invalid-feedback">
+      <div *ngIf="Cform.Nom.errors.required" >
+      name  Document is required
+
+      </div>
+
+    </div>
+   
+
+
+      </div>
+      <div class="form-group">
+        <label for="example-text-input" class="form-control-label">Group name</label>
+       
+       
+         <select class="form-control form-control-sm" formControlName="nom_Groupe"  [ngClass]="{ 'is-invalid': submitted && Cform.nom_Groupe.errors }"
+         [(ngModel)]="DocDetails.nom_Groupe">
+             <option [ngValue]="null">Choose a Group</option>
+
+          <option *ngFor="let e of Docs">{{ e.Nom}}</option>
+        </select>
+       
+       
+       
+       
+       
+         <div *ngIf="submitted && Cform.nom_Groupe.errors" class="invalid-feedback">
+          <div *ngIf="Cform.nom_Groupe.errors.required" >
+            name_Group is required
+
+          </div>
+
+        </div>
+
+
+
+
+      </div>
+
+
+      <div class="form-group">
+        <label for="example-text-input" class="form-control-label">Document </label>
+        <input class="form-control" type="file"
+          formControlName="url" [(ngModel)]="DocDetails.url"
+           id="example-url-input"
+           (change)="uploadFile($event)" [ngClass]="{ 'is-invalid': submitted && Cform.url.errors }"> 
+  
+           <div *ngIf="submitted && Cform.url.errors" class="invalid-feedback">
+            <div *ngIf="Cform.url.errors.required" >
+                Document pdf is required
+    
+            </div>
+    
+          </div>
+    
+    
+  
+    </div>
+
+
+  <div class="modal-footer">
+
+    <button type="submit" class="btn btn-danger"  >{{ DocsId===''? 'Add':'Update' }}</button>
+</div>
+
+</form>
+
+  </div>

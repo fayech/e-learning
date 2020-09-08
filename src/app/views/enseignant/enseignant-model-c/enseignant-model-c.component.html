@@ -1,0 +1,49 @@
+<div class="modal-body">
+    <form [formGroup]="addForm" (submit)="onSubmit(ClassId)">
+      <div class="form-group">
+        <label for="example-text-input" class="form-control-label">name</label>
+        <input class="form-control" type="text" [(ngModel)]="ClassDetails.Nom" formControlName="Nom"  id="example-text-input"
+        [ngClass]="{ 'is-invalid': submitted  && Cform.Nom.errors }"
+        placeholder="entrez votre Nom ici"  >
+    <div *ngIf="submitted  && Cform.Nom.errors" class="invalid-feedback">
+      <div *ngIf="Cform.Nom.errors.required" >
+      name is required
+
+      </div>
+
+    </div>
+
+
+
+      </div>
+
+       <div class="form-group">
+        <label for="example-text-input" class="form-control-label">Level</label>
+        <input class="form-control" type="text" [(ngModel)]="ClassDetails.Niveau" formControlName="Niveau"  id="example-text-input"
+        [ngClass]="{ 'is-invalid': submitted  && Cform.Niveau.errors }"
+        placeholder="entrez votre Niveau ici"  >
+    <div *ngIf="submitted  && Cform.Niveau.errors" class="invalid-feedback">
+      <div *ngIf="Cform.Niveau.errors.required" >
+      Level is required
+
+      </div>
+
+    </div>
+
+
+
+      </div>
+     
+
+
+
+
+
+  <div class="modal-footer">
+
+    <button type="submit" class="btn btn-danger"  >{{ ClassId===''? 'Ajouter':'Update' }}</button>
+</div>
+
+</form>
+
+  </div>

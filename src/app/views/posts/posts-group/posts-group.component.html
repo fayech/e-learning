@@ -1,0 +1,77 @@
+<div class="header pb-6">
+      <div class="container-fluid">
+        <div class="header-body">
+          <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-7">
+              <h6 class="h2 d-inline-block mb-0">Document sharing area</h6>
+              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                <ol class="breadcrumb breadcrumb-links">
+                  <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                  <li class="breadcrumb-item"><a href="#">Group</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Document</li>
+                </ol>
+              </nav>
+            </div>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col-xl-4 col-md-4" *ngFor="let Group of Groups; let i = index"  cdkDrag>
+          <div class="card bg-gradient-primary border-0">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0 text-white">{{ Group.Nom }}</h5>
+                  <span class="h2 font-weight-bold mb-0 text-white">{{ Group.Niveau }}            </span>
+                  <span class="h2 font-weight-bold mb-0 text-white">{{ Group.nom_E }}            </span>
+                 <div class="">
+        
+
+                     </div>
+                  <div class="progress progress-xs mt-3 mb-0">
+                    <div class="progress-bar bg-success" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;"></div>
+                  </div>
+                </div>
+   
+                <div class="col-auto"   >
+
+                  <button type="button"  class="btn btn-sm btn-neutral mr-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-h"></i>
+                  </button>
+                  
+                </div>
+              </div>
+        
+                         
+            </div>
+          </div>
+        </div>
+       
+    
+       
+      </div>
+    </div>
+
+
+
+<!--AddModel UpdateGroup -->
+<!--end-of AddGroup -->
+
+<!--AddModel UpdateDoc -->
+
+
+<!-- deleteGroup -->
+
+
+<!--end-of deleteGroup -->
+
+
+
+
+
+
+<!--end-of deleteDOC -->
